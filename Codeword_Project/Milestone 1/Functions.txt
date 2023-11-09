@@ -1,0 +1,232 @@
+#3.1 Boot Up
+def initial_choice_menu():
+    """
+    Gives the user 3 options before they login and start the game:
+    1. Administrator (login as an administrator and change/replace the words used in the game)
+    2. Player (login as a player and play without altering the grids at all)
+    3. Exit the system (Quit the Game)
+    """
+#4 Administrator Logic
+    """
+    Allow the user to add a different word to the puzzle.
+    Allow the user to delete a word from the puzzle.
+    Show the changed grids of figures 1,2,3,4 after each alteration.
+
+    Edit the grid you have instead of replacing with a new grid.
+    """
+
+#2.1 Generate the Game World
+def code_grid():
+    ['#', '#', '#', '#', '#', '#', '#', '#', '#']
+    ['#', '#', '#', '#', 'B', 'O', 'O', 'T', '#']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '#']
+    ['#', 'P', 'Y', 'T', 'H', 'O', 'N', '#', 'W']
+    ['#', '#', '#', '#', '#', 'N', '#', '#', 'I']
+    ['#', '#', '#', '#', '#', '#', '#', '#', 'G']
+    ['#', '#', '#', '#', '#', '#', '#', '#', 'G']
+    ['#', '#', '#', '#', '#', '#', '#', '#', 'L']
+    ['#', '#', '#', '#', '#', '#', '#', '#', 'E']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '#']
+
+#2.2 Initial state of the codeword puzzle
+def code_grid_initial_state():
+    ['#', '#', '#', '#', '#', '#', '#', '#', '#']
+    ['#', '#', '#', '#', '9', '4', '4', '2', '#']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '#']
+    ['#', 'P', '1', 'T', '3', '4', '5', '#', '6']
+    ['#', '#', '#', '#', '#', '5', '#', '#', '7']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '8']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '8']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '10']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '11']
+    ['#', '#', '#', '#', '#', '#', '#', '#', '#']
+    "Figure 2"
+
+#2.3 Create the key for each letter
+def key_grid():
+    final_key = [[0,'P'],[1,'Y'],[2,'T'],[3,'H'],
+                 [4,'0'],[5,'N'],[6,'W'],[7,'I'],
+                 [8,'G'],[9,'B'],[10,'L'],[11.'E']]
+    """ “0” will replace with ‘P’, “3” will be replaced by “H”, etc. This provides the player with the
+    indexes of each letter in the code_grid. The player must guess what letter is in each available
+    index using the player_key."""
+    "Figure 3"
+
+#2.3 Create the player key
+def player_key():
+    player_key = [[0,'P'],[1,'_'],[2,'T'],[3,'_'],
+                  [4,'_'],[5,'_'],[6,'_'],[7,'_'],
+                  [8,'_'],[9,'_'],[10,'_'],[11,'_']]
+    """When the player inputs their guess of what letter is in a cell on the crossword puzzle grid,
+    the letter they guess will be inserted into the player_key. If the letter they guess in the
+    specified index is the same as the specified index in the key_grid, then the player gains 2
+    points in their health value. If not, the letter is unassigned from both the code_grid and
+    the player_grid, and 2 points are subtracted from the health value"""
+    "Figure 4"
+
+#2.4 Create Users
+def create_details(userNames, password):
+    """Create the administrators username and password. Base this off the airline project rules
+    #this function sets the user name for the user using their first and last name
+    #the user name consists of four parts
+    #first part = the first letter of the user's first name
+    #second part = a random letter in the first name (except the first letter as it is taken)
+    #third part = a random letter in the last name (except the first letter)
+    #fourth part = first letter of the user's last name
+    #these are added together to create the final username in a lower case format"""
+
+#first_name_one = input("Enter your first name Player 1:\n")
+#last_name_one = input("Enter your last name Player 1:\n")
+
+def name_one(first_name_one, last_name_one):
+    return "Name:", first_name_one + last_name_one
+    
+def userName_Player_One(first_name_one, last_name_one):
+    """Example userName code:
+
+    first = first_name[0]
+    
+    second_index = random.randint(1, len(first_name) - 1)
+    third_index = random.randint(1, len(last_name) - 1)
+    
+    second = first_name[second_index]
+    third = last_name[third_index]
+    
+    fourth = last_name[0]
+    
+    user_name = first + second + third + fourth
+    user_name = user_name.lower()
+    return user_name"""
+
+def password_Player_One():
+    """
+    #for the alphabet we decided to obtain a list of ascii characters
+    #for the 1st, 2nd, 3rd, 5th, 6th, 7th letters, we pick a random letter in the alphabet list
+    #for the 4th character, a random number between 0 and 9 is selected
+    #for the 8th character, a special character is selected from the ones in the special character list
+    #the password is encrypted using the hashlib library
+
+    Example password code:
+    alphabet_lst = list(string.ascii_lowercase) + list(string.ascii_uppercase)
+    special_char = ['"', '!', '#', '%']
+
+    first_three_one_index = random.randint(0, len(alphabet_lst) - 1)
+    first = alphabet_lst[first_three_one_index]
+
+    first_three_two_index = random.randint(0, len(alphabet_lst) - 1)
+    second = alphabet_lst[first_three_two_index]
+
+    first_three_three_index = random.randint(0, len(alphabet_lst) - 1)
+    third = alphabet_lst[first_three_three_index]
+
+    fourth = random.randint(0, 9)
+
+    first_three_five_index = random.randint(0, len(alphabet_lst) - 1)
+    fifth = alphabet_lst[first_three_five_index]
+
+    first_three_six_index = random.randint(0, len(alphabet_lst) - 1)
+    sixth = alphabet_lst[first_three_six_index]
+
+    first_three_seven_index = random.randint(0, len(alphabet_lst) - 1)
+    seventh = alphabet_lst[first_three_seven_index]
+
+    eight_index = random.randint(0, len(special_char) - 1)
+    eighth = special_char[eight_index]
+
+    password = first, second, third, fourth, fifth, sixth, seventh, eighth
+    password = (' '.join([str(i) for i in password])).replace(" ", "")
+    return password"""
+
+#first_name_two = input("Enter your first name Player 2:\n")
+#last_name_two = input("Enter your last name Player 2:\n")
+
+def name_two(first_name_two, last_name_two):
+    return "Name:", first_name_two + last_name_two
+
+def userName_Player_Two(first_name_two, last_name_two):
+    """Example userName code:
+
+    first = first_name[0]
+    
+    second_index = random.randint(1, len(first_name) - 1)
+    third_index = random.randint(1, len(last_name) - 1)
+    
+    second = first_name[second_index]
+    third = last_name[third_index]
+    
+    fourth = last_name[0]
+    
+    user_name = first + second + third + fourth
+    user_name = user_name.lower()
+    return user_name"""
+
+def password_Player_Two():
+    """
+    #for the alphabet we decided to obtain a list of ascii characters
+    #for the 1st, 2nd, 3rd, 5th, 6th, 7th letters, we pick a random letter in the alphabet list
+    #for the 4th character, a random number between 0 and 9 is selected
+    #for the 8th character, a special character is selected from the ones in the special character list
+    #the password is encrypted using the hashlib library
+
+    Example password code:
+    alphabet_lst = list(string.ascii_lowercase) + list(string.ascii_uppercase)
+    special_char = ['"', '!', '#', '%']
+
+    first_three_one_index = random.randint(0, len(alphabet_lst) - 1)
+    first = alphabet_lst[first_three_one_index]
+
+    first_three_two_index = random.randint(0, len(alphabet_lst) - 1)
+    second = alphabet_lst[first_three_two_index]
+
+    first_three_three_index = random.randint(0, len(alphabet_lst) - 1)
+    third = alphabet_lst[first_three_three_index]
+
+    fourth = random.randint(0, 9)
+
+    first_three_five_index = random.randint(0, len(alphabet_lst) - 1)
+    fifth = alphabet_lst[first_three_five_index]
+
+    first_three_six_index = random.randint(0, len(alphabet_lst) - 1)
+    sixth = alphabet_lst[first_three_six_index]
+
+    first_three_seven_index = random.randint(0, len(alphabet_lst) - 1)
+    seventh = alphabet_lst[first_three_seven_index]
+
+    eight_index = random.randint(0, len(special_char) - 1)
+    eighth = special_char[eight_index]
+
+    password = first, second, third, fourth, fifth, sixth, seventh, eighth
+    password = (' '.join([str(i) for i in password])).replace(" ", "")
+    return password"""
+
+def encryption_Players(userNames, passwords):
+    """encrypted_username = hashlib.sha256(usernames.encode('utf-8')).hexdigest()
+    encrypted_passwords = hashlib.sha256(passwords.encode('utf-8')).hexdigest()
+    return encrypted_username, encrypted_password
+
+    We use the hashlib library to encrypt the passwords and usernames"""
+
+def player_one(name, encrypted_usernames, encrypted_passwords, health value):
+    """Initializes health value to 5 by assigining a variable called health_value (for player 1
+    and then another for player 2) and assigning the number 5 to them both. They will change as the
+    game goes on"""
+
+    """Store name, encrypted usernames and password and store them in a list.
+    e.g [[name1, username1, password1], [name2, username2, password2, health1], [name3,
+    username3, password3, health2]]"""
+
+def player_two(name, encrypted_usernames, encrypted_password, health value):
+    """Initializes health value to 5 by assigining a variable called health_value (for player 1
+    and then another for player 2) and assigning the number 5 to them both. They will change as the
+    game goes on"""
+
+    """Store name, encrypted usernames and password and store them in a list.
+    e.g [[name1, username1, password1], [name2, username2, password2, health1], [name3,
+    username3, password3, health2]]"""
+
+#3.2 Players' Logic - After Game is Over
+def results_and_scores():
+    """Checks who won, player 1 or 2
+    After the game is over, print the player statistics: players names,
+    number of correct guesses, number of incorrect guesses and current
+    health value."""
